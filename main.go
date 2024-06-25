@@ -8,20 +8,6 @@ import (
 	"log"
 )
 
-var data = `
-a: Easy!
-b:
-  d: [3, 4]
-`
-
-type T struct {
-	A string
-	B struct {
-		RenamedC int   `yaml:"c"`
-		D        []int `yaml:",flow"`
-	}
-}
-
 func main() {
 	url := "https://cyanmori.yeahfast.com/link/dTgoNRK5tgaeZtdP?clash=1"
 	data, err := module.NewReader(url).Contents()
