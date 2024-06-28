@@ -1,4 +1,8 @@
-package profile
+package clash
+
+import (
+	"github.com/alex-1900/convert-to/config"
+)
 
 type Profile struct {
 	StoreSelected bool `json:"store-selected"`
@@ -126,6 +130,7 @@ type ProxyProvider struct {
 }
 
 type Clash struct {
+	content            string
 	Port               int16                    `json:"port"`
 	SocksPort          int16                    `json:"socks-port"`
 	RedirPort          int16                    `json:"redir-port"`
@@ -150,4 +155,15 @@ type Clash struct {
 	Rules              []string                 `json:"rules"`
 	ProxyProviders     map[string]ProxyProvider `json:"proxy-providers,omitempty"`
 	Tunnels            []interface{}            `json:"tunnels,omitempty"`
+}
+
+func (Clash) ProID() config.ProID {
+	return config.ProIDClash
+}
+
+func (c Clash) String() string {
+	if c.content == "" {
+		return "Clash profile"
+	}
+	return c.content
 }
